@@ -1,0 +1,8 @@
+<m-mixer-filter></m-mixer-filter>
+<div class="scroll">
+    <div class="tracks">
+        @for(t of tracks(); track t.id) {
+            <m-mixer-track [track]="t"></m-mixer-track>
+        }
+    </div>
+</div>

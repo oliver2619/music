@@ -1,0 +1,5 @@
+@use '../../../../style/group';
+
+:host {
+    @include group.default($stretch: true);
+}

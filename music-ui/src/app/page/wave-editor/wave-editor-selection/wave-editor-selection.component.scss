@@ -1,0 +1,9 @@
+@use '../../../../style/spacing';
+
+:host {
+    align-self: stretch;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: spacing.gap(1.5);
+}

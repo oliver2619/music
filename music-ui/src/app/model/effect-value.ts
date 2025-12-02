@@ -1,0 +1,1 @@
+export type EffectValue = number | boolean | string;

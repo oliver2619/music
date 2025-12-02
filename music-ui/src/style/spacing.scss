@@ -1,0 +1,15 @@
+@use 'sass:math';
+
+$shadow: 2px;
+
+@mixin border($size) {
+    border-radius: math.pow(2, $size) * 2px;
+}
+
+@function gap($size) {
+    @return math.pow(2, $size) * 0.5rem;
+}
+
+@function padding($size) {
+    @return math.pow(2, $size) * 0.25rem;
+}

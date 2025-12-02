@@ -1,0 +1,13 @@
+:host {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 16px;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

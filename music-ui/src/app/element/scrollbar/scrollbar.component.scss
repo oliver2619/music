@@ -1,0 +1,37 @@
+@use '../../../style/color';
+
+$_width: 24px;
+
+:host {
+    position: relative;
+    align-self: stretch;
+    box-sizing: border-box;
+    border: 1px solid color.$scrollbar-border;
+    background-color: color.$scrollbar-bkgnd;
+
+    display: flex;
+    align-items: stretch;
+
+    &.horizontal {
+        height: $_width;
+        flex-direction: row;
+
+        div {
+            height: 100%;
+        }
+    }
+
+    &.vertical {
+        width: $_width;
+        flex-direction: column;
+
+        div {
+            width: 100%;
+        }
+    }
+}
+
+div {
+    position: absolute;
+    background-color: color.$scrollbar-bar;
+}

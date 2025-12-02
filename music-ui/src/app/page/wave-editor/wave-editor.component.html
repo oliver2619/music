@@ -1,0 +1,19 @@
+<m-wave-editor-file-list (load)="onLoadFile()" (saveAs)="onSaveFileAs()" (querySave)="onQuerySave($event)"></m-wave-editor-file-list>
+<m-wave-editor-actions></m-wave-editor-actions>
+<div class="content">
+    <div class="group stretch grow">
+        <div class="section">
+            <m-wave-editor-selection (zoomShowAll)="onZoomShowAll()" (zoomShowSelection)="onZoomShowSelection()" (zoomSet)="onZoomSet($event)" (zoomIn)="onZoomIn()" (zoomOut)="onZoomOut()"></m-wave-editor-selection>
+        </div>
+        <div class="content stretch grow">
+            <m-wave-editor-wave></m-wave-editor-wave>
+        </div>
+    </div>
+    @if(pitchVisible()) {
+        <m-wave-editor-pitch></m-wave-editor-pitch>
+    }
+    @if(fxVisible()) {
+        <m-wave-editor-fx></m-wave-editor-fx>
+    }
+</div>
+<m-wave-editor-control></m-wave-editor-control>

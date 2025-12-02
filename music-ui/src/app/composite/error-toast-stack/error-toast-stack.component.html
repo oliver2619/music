@@ -1,0 +1,3 @@
+@for(e of errors(); track e.id) {
+    <m-error-toast [messageId]="e.id" [message]="e.message"></m-error-toast>
+}

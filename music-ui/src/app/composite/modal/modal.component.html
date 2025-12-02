@@ -1,0 +1,11 @@
+<div class="backpane"></div>
+<div class="modalpane">
+    <h1>{{title()}}</h1>
+    <div class="content">
+        <div #content class="inner-content"></div>
+        <div class="button-grid-2 center">
+            <button type="button" [disabled]="!valid()" (click)="onOk()" ptI18n="modal.ok"></button>
+            <button type="button" (click)="onCancel()" ptI18n="modal.cancel"></button>
+        </div>
+    </div>
+</div>

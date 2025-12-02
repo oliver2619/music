@@ -1,0 +1,23 @@
+<div class="button-grid-4">
+    <button type="button" (click)="onAddAudioTrack()" [disabled]="!canInsertAudioTrack()" class="green">Audio+</button>
+    <button type="button" (click)="onAddFxTrack()" [disabled]="!canInsertFxTrack()" class="green">FX+</button>
+    <button type="button" (click)="onAddGroupTrack()" [disabled]="!canInsertGroupTrack()" class="green">Group+</button>
+    <button type="button" (click)="onAddMidiTrack()" [disabled]="!canInsertMidiTrack()" class="green">Midi+</button>
+</div>
+<div class="button-grid-6">
+    <button type="button" (click)="onToggleMasterTrack()" [mActive]="visibility().globalTrack">Master</button>
+    <button type="button" (click)="onToggleAudioTrack()" [mActive]="visibility().audioTrack">Audio</button>
+    <button type="button" (click)="onToggleFxTrack()" [mActive]="visibility().fxTrack">FX</button>
+    <button type="button" (click)="onToggleGroupTrack()" [mActive]="visibility().groupTrack">Group</button>
+    <button type="button" (click)="onToggleMidiTrack()" [mActive]="visibility().midiTrack">Midi</button>
+    <button type="button" (click)="onToggleMutedTrack()" [mActive]="visibility().mutedTrack" class="red" ptI18n="muted"></button>
+</div>
+<div class="button-row">
+    <input type="text" [value]="visibility().searchString" (mChanging)="onChangeName($event)" size="20" spellcheck="false" placeholder="{{ 'mixer.search.placeholder' | i18n }}">
+    <button type="button" (click)="onChangeName('')">&times;</button>    
+</div>
+<div class="button-grid-3">
+    <button type="button" (click)="onToggleEqSection()" [mActive]="visibility().eqSection" class="cyan">EQ</button>
+    <button type="button" (click)="onToggleFxSection()" [mActive]="visibility().fxSection" class="yellow">FX</button>
+    <button type="button" (click)="onToggleSendSection()" [mActive]="visibility().sendSection" class="orange">Send</button>
+</div>

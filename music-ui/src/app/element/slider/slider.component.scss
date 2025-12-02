@@ -1,0 +1,59 @@
+@use '../../../style/color';
+@use '../../../style/spacing';
+
+$_width: 32px;
+
+:host {
+    position: relative;
+    box-sizing: content-box;
+    display: flex;
+    align-items: center;
+
+    &.horizontal {
+        cursor: ew-resize;
+        min-width: 100px;
+        max-width: 200px;
+        min-height: $_width;
+        flex-direction: row;
+
+        .line {
+            height: 2px;
+            width: 100%;
+        }
+
+        .slider {
+            height: $_width;
+            width: $_width * 0.5;
+        }
+    }
+
+    &.vertical {
+        cursor: ns-resize;
+        min-height: 100px;
+        max-height: 200px;
+        min-width: $_width;
+        flex-direction: column;
+
+        .line {
+            width: 2px;
+            height: 100%;
+        }
+
+        .slider {
+            width: $_width;
+            height: $_width * 0.5;
+        }
+    }
+}
+
+.line {
+    position: absolute;
+    background-color: color.$text;
+}
+
+.slider {
+    position: absolute;
+    outline: 2px solid black;
+    background-color: color.$text;
+    @include spacing.border(0);
+}

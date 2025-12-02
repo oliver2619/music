@@ -1,0 +1,13 @@
+<select (mChanged)="onChangeTrack($event)" [value]="trackId()" [mActive]="active()" [disabled]="!hasAvailableEffects()" class="orange">
+    <option value="" ptI18n="mixer.sendFx.none"></option>
+    @for(t of availableEffects(); track t.key) {
+        <option [value]="t.key">{{ t.value }}</option>
+    }
+</select>
+<div class="send-group">
+    <div class="pre-post">
+        <button type="button" (click)="onSetPost(false)" [mActive]="!post()" class="orange">Pre</button>
+        <button type="button" (click)="onSetPost(true)" [mActive]="post()" class="orange">Post</button>
+    </div>
+    <m-spin-button [min]="0" [max]="1" [neutral]="0" [db]="true" [value]="value()" (changing)="onChangeValue($event)" class="orange"></m-spin-button>
+</div>

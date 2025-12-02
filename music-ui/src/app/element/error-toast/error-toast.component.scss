@@ -1,0 +1,21 @@
+@use '../../../style/color';
+@use '../../../style/spacing';
+
+:host {
+    box-shadow: 0 0 spacing.$shadow black;
+    background-color: black;
+    padding: spacing.$shadow * 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+div {
+    cursor: pointer;
+    pointer-events: all;
+    box-shadow: 0 0 spacing.$shadow color.$error-background;
+    padding: spacing.gap(0);
+    color: color.$error-text;
+    text-shadow: 0 0 spacing.$shadow color.$error-text;
+    background-color: color.$error-background;
+}

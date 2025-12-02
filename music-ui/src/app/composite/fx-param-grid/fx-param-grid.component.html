@@ -1,0 +1,16 @@
+@for(p of primaryParameters(); track p.name) {
+    <div class="p1">
+        <label>{{p.name}}</label>
+        <m-fx-param-input [value]="values()[p.name]" [parameter]="p.param" (changeValue)="onChangeValue(p.name, $event)"></m-fx-param-input>
+    </div>
+}
+@if(hasSecondaryParameters()) {
+    <div class="p2">
+        <select [value]="secondaryParameterName()!" (mChanged)="onChangeSecondaryParameter($event)">
+            @for(p of secondaryParameters(); track p.name) {
+                <option [value]="p.name">{{p.name}}</option>
+            }
+        </select>
+        <m-fx-param-input [value]="values()[secondaryParameterName()!]" [parameter]="secondaryParameter()!" (changeValue)="onChangeValue(secondaryParameterName()!, $event)"></m-fx-param-input>
+    </div>
+}

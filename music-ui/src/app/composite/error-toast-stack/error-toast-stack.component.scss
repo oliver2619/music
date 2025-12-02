@@ -1,0 +1,12 @@
+@use '../../../style/spacing';
+
+:host {
+    pointer-events: none;
+    position: absolute;
+    bottom: spacing.gap(0);
+    left: spacing.gap(0);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: spacing.gap(0);
+}

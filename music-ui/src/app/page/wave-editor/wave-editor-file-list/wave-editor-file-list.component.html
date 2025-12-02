@@ -1,0 +1,23 @@
+<div class="button-row">
+    @for(file of files(); track file.name) {
+        <button type="button" (click)="onSelect(file)" [ngClass]="{active: selected() === file}">
+            <span>{{file.name}}</span>
+            @if(file.isModified) {
+                <small><sup>*</sup></small>
+            }
+        </button>
+    }
+</div>
+<div class="tool-bar">
+    <div class="button-row">
+        <button type="button" (click)="onNew()">New</button>
+        <button type="button" (click)="onLoad()">Load</button>
+    </div>
+    <div class="button-row">
+        <button type="button" [disabled]="!hasSelection() || !isModified()" (click)="onSave()">Save</button>
+        <button type="button" [disabled]="!hasSelection() || !isModified()" (click)="onSaveAs()">Save as</button>
+    </div>
+    <div class="button-row">
+        <button type="button" [disabled]="!hasSelection()" (click)="onClose()">Close</button>
+    </div>
+</div>

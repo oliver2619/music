@@ -1,0 +1,106 @@
+@use 'sass:color';
+@use 'sass:math';
+
+@function default($brightness) {
+    @return hsl(190, math.div($brightness, 8) * 10%, math.div($brightness, 8) * 100%);
+}
+
+@function cyan($brightness) {
+    @return hsl(190, 90%, math.div($brightness, 8) * 85%);
+}
+
+@function blue($brightness) {
+    @return hsl(220, 100%, math.div($brightness, 8) * 85%);
+}
+
+@function green($brightness) {
+    @return hsl(120, 80%, math.div($brightness, 8) * 90%);
+}
+
+@function orange($brightness) {
+    @return hsl(30, 90%, math.div($brightness, 8) * 85%);
+}
+
+@function red($brightness) {
+    @return hsl(350 + math.div($brightness, 8) * 20, 90%, math.div($brightness, 8) * 90%);
+}
+
+@function yellow($brightness) {
+    @return hsl(40 + math.div($brightness, 8) * 10, 90%, math.div($brightness, 8) * 75%);
+}
+
+@for $i from 1 through 8 {
+    .color-blue-#{$i} {
+        color: blue($i);
+    }
+
+    .bg-blue-#{$i} {
+        background-color: blue($i);
+    }
+
+    .color-cyan-#{$i} {
+        color: cyan($i);
+    }
+
+    .bg-cyan-#{$i} {
+        background-color: cyan($i);
+    }
+
+    .color-default-#{$i} {
+        color: default($i);
+    }
+
+    .bg-default-#{$i} {
+        background-color: default($i);
+    }
+
+    .color-green-#{$i} {
+        color: green($i);
+    }
+
+    .bg-green-#{$i} {
+        background-color: green($i);
+    }
+
+    .color-orange-#{$i} {
+        color: orange($i);
+    }
+
+    .bg-orange-#{$i} {
+        background-color: orange($i);
+    }
+
+    .color-red-#{$i} {
+        color: red($i);
+    }
+
+    .bg-red-#{$i} {
+        background-color: red($i);
+    }
+
+    .color-yellow-#{$i} {
+        color: yellow($i);
+    }
+
+    .bg-yellow-#{$i} {
+        background-color: yellow($i);
+    }
+}
+
+$background: default(0);
+$text: default(8);
+$nav: default(8);
+$label: default(8);
+$inputBackground: default(0);
+$inputText: default(8);
+$inputInvalidText: red(8);
+$group-text: default(8);
+$group-bkgnd: default(4);
+$form-text: default(8);
+$form-bkgnd: default(4);
+$scrollbar-border: default(8);
+$scrollbar-bkgnd: default(2);
+$scrollbar-bar: default(8);
+$error-text: red(0);
+$error-background: red(6);
+

@@ -1,0 +1,80 @@
+@use '../../../../style/color';
+@use '../../../../style/spacing';
+
+:host {
+    box-sizing: content-box;
+    width: 8rem;
+    border: 2px solid color.default(4);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    background-color: color.default(1);
+    @include spacing.border(1);
+}
+
+.section {
+    border-top: 1px solid color.default(4);
+    border-bottom: 1px solid color.default(4);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    &.blue {
+        background-color: color.blue(2);
+    }
+
+    &.cyan {
+        background-color: color.cyan(2);
+    }
+
+    &.orange {
+        background-color: color.orange(2);
+    }
+
+    &.yellow {
+        background-color: color.yellow(2);
+    }
+
+    &.padding {
+        padding: spacing.padding(0);
+        row-gap: spacing.padding(0);
+    }
+}
+
+.group-group {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.solo-mute-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: stretch;
+    column-gap: spacing.padding(0);
+}
+
+.title-group {
+    padding: spacing.padding(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    color: color.default(8);
+    background-color: color.default(4);
+
+    .icon-and-title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: spacing.padding(0);
+    }
+}
+
+.volume-group {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: space-evenly;
+}

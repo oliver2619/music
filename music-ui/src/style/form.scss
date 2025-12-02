@@ -1,0 +1,192 @@
+@use './animation';
+@use './color';
+@use './font';
+@use './spacing';
+
+@mixin _inputColors($color, $background-color, $active) {
+    border: 1px solid $color;
+    @if($active) {
+        box-shadow: 0 0 spacing.$shadow $color;
+        color: $background-color;
+        text-shadow: 0 0 spacing.$shadow $background-color;
+        background-color: $color;
+
+        &::selection {
+            color: $color;
+            text-shadow: 0 0 spacing.$shadow $color;
+            background-color: $background-color;
+        }
+    } @else {
+        color: $color;
+        text-shadow: 0 0 spacing.$shadow $color;
+        background-color: $background-color;
+
+        &::selection {
+            color: $background-color;
+            text-shadow: 0 0 spacing.$shadow $background-color;
+            background-color: $color;
+        }
+    }
+}
+
+@mixin _input {
+    outline: none;
+    padding: spacing.padding(0);
+    transition: all animation.$duration, visibility 0s;
+    @include font.default(0);
+    @include spacing.border(0);
+
+    &:disabled {
+        opacity: 0.5;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    &::placeholder {
+        font-style: italic;
+        font-weight: 300;
+        color: color.default(5);
+
+    }
+
+    &:focus::placeholder {
+        opacity: 0.5;
+    }
+}
+
+@mixin _selectInputColors($color) {
+    &:not(.active) {
+        @include _inputColors($color, color.$inputBackground, false);
+    }
+
+    &.active {
+        @include _inputColors($color, color.$inputBackground, true);
+    }
+
+    option {
+        color: $color;
+        background-color: color.$inputBackground;
+    }
+}
+
+@mixin _selectInput() {
+    @include _input();
+    @include _selectInputColors(color.default(8));
+
+    &.cyan {
+        @include _selectInputColors(color.cyan(6));
+    }
+
+    &.blue {
+        @include _selectInputColors(color.blue(6));
+    }
+
+    &.green {
+        @include _selectInputColors(color.green(6));
+    }
+
+    &.orange {
+        @include _selectInputColors(color.orange(6));
+    }
+
+    &.red {
+        @include _selectInputColors(color.red(6));
+    }
+
+    &.yellow {
+        @include _selectInputColors(color.yellow(6));
+    }
+
+    &:not(:disabled) {
+        cursor: pointer;
+    }
+
+    &.number {
+        text-align: end;
+    }
+}
+
+@mixin _textinput {
+    @include _input();
+
+    &:read-write {
+        &:focus {        
+            &.ng-invalid {
+                @include _inputColors(color.$inputInvalidText, color.$inputBackground, true);
+            }
+
+            &:not(.ng-invalid) {
+                @include _inputColors(color.$inputText, color.$inputBackground, true);
+            }
+        }
+
+        &:not(:focus) {
+            &.ng-invalid {
+                @include _inputColors(color.$inputInvalidText, color.$inputBackground, false);
+            }
+
+            &:not(.ng-invalid) {
+                @include _inputColors(color.$inputText, color.$inputBackground, false);
+            }
+        }
+    }
+
+    &:read-only {
+        border-color: rgba(color.$inputText, 0.5) !important;
+        @include _inputColors(color.$inputText, color.$inputBackground, false);
+    }
+
+    &[type=text].number {
+        text-align: end;
+    }
+
+    &[type=number] {
+        appearance:textfield;
+        text-align: end;
+    
+        &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+            display: none;
+        }
+    }
+}
+
+form {
+
+    &.form-grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        gap: spacing.gap(0);
+        justify-items: start;
+        align-items: center;
+
+        input, select, .input-group {
+            justify-self: stretch;
+        }
+    }
+}
+
+input[type=number], input[type=text] {
+    @include _textinput();
+}
+
+select {
+    @include _selectInput();
+}
+
+label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    @include font.default(0);
+}
+
+.input-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: spacing.gap(0);
+
+    input, select {
+        flex: 1 1;
+    }
+}

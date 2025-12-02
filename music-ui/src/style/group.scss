@@ -1,0 +1,57 @@
+@use './color';
+@use './spacing';
+
+@mixin default($stretch: false) {
+    border: 2px solid color.$group-bkgnd;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    @include spacing.border(1);
+
+    @if($stretch) {
+        align-self: stretch
+    }
+
+    &.stretch {
+        align-self: stretch;
+    }
+
+    &.grow {
+        flex: 1 1;
+    }
+
+    & > .section {
+        align-self: stretch;
+        padding: spacing.padding(0);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        column-gap: spacing.gap(0);
+        color: color.$group-text;
+        background-color: color.$group-bkgnd;
+
+        &.stretch {
+            justify-content: space-between;
+        }
+    }
+
+    & > .content {
+        padding: spacing.padding(1);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: spacing.padding(1);
+
+        &.stretch {
+            align-self: stretch;
+        }
+        
+        &.grow {
+            flex: 1 1;
+        }
+    }
+}
+
+.group {
+    @include default();
+}

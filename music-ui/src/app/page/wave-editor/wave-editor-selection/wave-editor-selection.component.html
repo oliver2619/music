@@ -1,0 +1,37 @@
+<div class="button-row">
+    <button type="button" [ngClass]="{active: mode() == 'select'}" (click)="onEditModeSelect()">Sel</button>
+    <button type="button" [ngClass]="{active: mode() == 'scroll'}" (click)="onEditModeScroll()">Scl</button>
+    <button type="button" [ngClass]="{active: mode() == 'zoom'}" (click)="onEditModeZoom()">Zin</button>
+</div>
+<div class="button-row">
+    <label for="waveEditorSelection.start">Sta</label>
+    <input id="waveEditorSelection.start" type="number" [value]="selectionStart()" [defaultValue]="selectionStart()" (mNumberChanged)="onSelectionStartChange($event)" min="-10000000" max="10000000">
+</div>
+<div class="button-row">
+    <label for="waveEditorSelection.end">End</label>
+    <input id="waveEditorSelection.end" type="number" [value]="selectionEnd()" [defaultValue]="selectionEnd()" (mNumberChanged)="onSelectionEndChange($event)" min="-10000000" max="10000000">
+</div>
+<div class="button-row">
+    <label for="waveEditorSelection.length">Len</label>
+    <input id="waveEditorSelection.length" type="number" [value]="selectionLength()" [defaultValue]="selectionLength()" (mNumberChanged)="onSelectionLengthChange($event)" min="0" max="10000000">
+</div>
+<div class="button-row">
+    <button type="button" (click)="onClearSelection()" [ngClass]="{active: !hasSelection()}">Clr</button>
+    <button type="button" (click)="onSelectEnd()" [ngClass]="{active: isEndSelected()}">End</button>
+    <button type="button" (click)="onSelectAll()" [ngClass]="{active: isAllSelected()}">All</button>
+</div>
+<div class="button-row">
+    <span>Z</span>
+    <input type="text" readonly="readonly" value="{{zoom() * 100 | number:'0.1-1'}} %" size="4" class="number">
+    <div class="button-grid-2">
+        <button type="button" (click)="onZoomIn()">-</button>
+        <button type="button" [disabled]="!canZoomIn()" (click)="onZoomOut()">+</button>
+    </div>
+    <button type="button" (click)="onZoomReset()" [ngClass]="{active: zoom() == 1}">1:1</button>
+    <button type="button" (click)="onZoomShowSelection()">Sel</button>
+    <button type="button" (click)="onZoomShowAll()">All</button>
+</div>
+<div class="button-row">
+    <label for="waveEditorSelection.snap">S</label>
+    <select id="waveEditorSelection.snap" mSelectSnap [value]="snapDisplay()" (mChanged)="onSnapChange($event)"></select>
+</div>

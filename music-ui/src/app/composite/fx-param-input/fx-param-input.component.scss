@@ -1,0 +1,8 @@
+@use '../../../style/spacing';
+
+:host {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: spacing.gap(0);
+}

@@ -1,0 +1,17 @@
+@if(isButton()) {
+    <button type="button" (click)="onClickButton()" [ngClass]="{active: booleanValue()}">{{(booleanValue() ? 'on' : 'off') | i18n}}</button>
+} @else if(isDropdown()) {
+    <select [value]="stringValue()" (mChanged)="onChangeChoice($event)">
+        @for(c of choice(); track c) {
+            <option [value]="c">{{c}}</option>
+        }
+    </select>
+} @else if(isSpinner()) {
+    <m-spin-button [value]="floatValue()" [min]="min()" [max]="max()" [neutral]="neutral()" [step]="step()" [db]="db()" (changing)="onChangingSpinner($event)" (changed)="onChangedSpinner($event)"></m-spin-button>
+    @if(db()) {
+        <input type="text" value="{{floatValue() | db}}" readonly="readonly" size="4" class="number">
+        <span>dB</span>
+    } @else {
+        <input type="text" value="{{floatValue() | number:'0.0-4'}}" readonly="readonly" size="4" class="number">
+    }
+}

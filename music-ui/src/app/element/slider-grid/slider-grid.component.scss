@@ -1,0 +1,21 @@
+@use '../../../style/color';
+
+:host {
+    position: relative;
+    align-self: stretch;
+    aspect-ratio: 1;
+    min-width: 100px;
+    max-width: 200px;
+    min-height: 100px;
+    max-height: 200px;
+    box-sizing: content-box;
+    border: 1px solid color.$text;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+canvas {
+    cursor: crosshair;
+    position: absolute;
+}

@@ -1,0 +1,21 @@
+@use './spacing';
+
+.tool-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    column-gap: spacing.gap(1.5);
+    justify-content: space-between;
+
+    m-slider {
+        align-self: center;
+
+        &[orientation=horizontal] {
+            flex: 1 1;
+        }
+    }
+
+    .button-row.stretch {
+        flex: 1 1;
+    }
+}

@@ -1,0 +1,129 @@
+@use './animation';
+@use './color';
+@use './font';
+@use './spacing';
+
+@mixin _buttonColor($color) {
+    box-shadow: 0 0 spacing.$shadow $color, inset 0 0 spacing.$shadow $color;
+    border-color: $color;
+    color: $color;
+    text-shadow: 0 0 spacing.$shadow $color;
+
+    &.active, &:active:not(:disabled) {
+        background-color: $color;
+    }
+
+    &:disabled:not(.active) {
+        color: $color !important;
+    }
+}
+
+@mixin _button {
+    cursor: pointer;
+    outline: none;
+    border-width: 1px;
+    border-style: solid;
+    padding: spacing.padding(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: color.$background;
+    transition: all animation.$duration, visibility 0s;
+    
+    @include font.default(0);
+    @include spacing.border(0);
+    @include _buttonColor(color.default(7));
+
+    &.active, &:active:not(:disabled) {
+        color: color.$background !important;
+        text-shadow: 0 0 spacing.$shadow color.$background !important;
+    }
+
+    &:disabled {
+        cursor: default;
+        filter: blur(0.75px);
+        opacity: 0.75;
+
+        &:not(.active) {
+            box-shadow: none !important;
+            text-shadow: none !important;
+            background-color: color.$background !important;
+        }
+    }
+
+    &.blue {
+        @include _buttonColor(color.blue(6));
+    }
+
+    &.cyan {
+        @include _buttonColor(color.cyan(6));
+    }
+
+    &.green {
+        @include _buttonColor(color.green(6));
+    }
+
+    &.orange {
+        @include _buttonColor(color.orange(6));
+    }
+
+    &.red {
+        @include _buttonColor(color.red(6));
+    }
+
+    &.yellow {
+        @include _buttonColor(color.yellow(6));
+    }
+}
+
+button {
+    @include _button();
+}
+
+@mixin button-grid($columns) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    align-items: stretch;
+    justify-items: stretch;
+    gap: spacing.gap(0);
+
+    &.center {
+        align-self: center;
+    }
+}
+
+@for $i from 2 through 8 {
+    .button-grid-#{$i} {
+        @include button-grid($i);
+    }    
+}
+
+.button-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    column-gap: spacing.gap(0);
+
+    &.center {
+        align-self: center;
+    }
+
+    &.stretch {
+        align-self: stretch;
+    }
+
+    & > span {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    m-slider {
+        align-self: center;
+
+        &[orientation=horizontal] {
+            flex: 1 1;
+        }
+    }
+}

@@ -1,0 +1,40 @@
+<div class="tool-bar">
+    <div class="button-row">
+        <button [disabled]="!canUndo()" type="button" (click)="onUndo()">Undo</button>
+        <button [disabled]="!canRedo()" type="button" (click)="onRedo()">Redo</button>
+    </div>
+    <div class="button-row">
+        <button [disabled]="!hasSelection()" type="button" (click)="onCut()">Cut</button>
+        <button [disabled]="!hasSelection()" type="button" (click)="onCopy()">Copy</button>
+        <button type="button" (click)="onPaste()">Paste</button>
+    </div>
+    <div class="button-row">
+        <button [disabled]="!hasSelection()" type="button" (click)="onDelete()">Delete</button>
+        <button [disabled]="!hasSelection()" type="button" (click)="onTrim()">Trim</button>
+    </div>
+    <div class="button-row">
+        <button [disabled]="!hasSelection()" type="button" (click)="onFadeIn()">Fade in</button>
+        <button [disabled]="!hasSelection()" type="button" (click)="onFadeOut()">Fade out</button>
+        <button [disabled]="!hasSelection()" type="button" (click)="onSetSilence()">Silence</button>
+        <button [disabled]="!hasSelection()" type="button" (click)="onInsertSilence()">Ins. silence</button>
+        <button [disabled]="!hasSelection()" type="button" (click)="onAppendSilence()">Append silence</button>
+    </div>
+    <div class="button-row">
+        <button type="button" (click)="onRevert()">Revert</button>
+        @if(isStereo()) {
+            <button type="button" (click)="onFlip()">Flip</button>
+            <button type="button" (click)="onSwap()">Swap</button>
+        }
+        <button type="button" (click)="onNormalize()">Normal.</button>
+        @if(isStereo()) {
+            <button type="button" (click)="onNormalizeEach()">Normal. channels</button>
+        }
+    </div>
+    <div class="button-row">
+        <button type="button" (click)="onConvert()">Convert</button>
+    </div>
+    <div class="button-row">
+        <button type="button" (click)="onPitch()" [ngClass]="{active: pitchVisible()}">Pitch</button>
+        <button type="button" (click)="onFx()" [ngClass]="{active: fxVisible()}">Fx</button>
+    </div>
+</div>

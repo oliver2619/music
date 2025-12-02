@@ -1,0 +1,49 @@
+<div class="title-group">
+    <div class="icon-and-title">
+        <img src="undefined"/>
+        <span>{{track().id}}</span>    
+    </div>
+    <button type="button" (click)="onDelete()" [mVisible]="canDelete()" class="red">&times;</button>
+</div>
+<div class="section blue" [mVisible]="hasRouting()">
+    <div class="group-group">
+        <select [value]="routedTrack()" [mActive]="isRouted()" (mChanged)="onChangeRoute($event)" [disabled]="!hasAvailableRoutes()" class="blue">
+            @for(r of availableRoutes(); track r.key) {
+                <option [value]="r.key">{{r.value}}</option>
+            }
+        </select>
+    </div>
+</div>
+@if(visibility().eqSection) {
+    <div class="section cyan" [mVisible]="hasEq()">
+        <m-mixer-eq [track]="track()"></m-mixer-eq>
+    </div>
+}
+@if(visibility().fxSection) {
+    <div class="section yellow" [mVisible]="hasFx()">
+        <m-mixer-fx [track]="track()"></m-mixer-fx>
+    </div>        
+}
+@if(visibility().sendSection) {
+    <div class="section orange" [mVisible]="hasSendFx()">
+        <m-mixer-send [track]="track()"></m-mixer-send>
+    </div>    
+}
+<div class="section padding" [mVisible]="hasSoloMute()">
+    <div class="solo-mute-group">
+        <button type="button" (click)="onSolo()" [mActive]="solo()" class="green">Solo</button>
+        <button type="button" (click)="onMute()" [mActive]="muted()" class="red">Mute</button>
+    </div>    
+</div>
+<div class="section padding" [mVisible]="hasVolpan()">
+    <div class="volume-group">
+        <m-slider orientation="vertical" (changing)="onSetVolume($event)" [db]="true" [min]="0" [max]="1" [neutral]="0.8" [value]="volume()" style="height: 200px"></m-slider>
+        @if(hasUv()) {
+            <m-uvmeter [value]="uvPeak()"></m-uvmeter>
+        }
+    </div>
+    <m-slider orientation="horizontal" (changed)="onSetPan($event)" [min]="-1" [max]="1" [neutral]="0" [value]="pan()" [mVisible]="hasVolpan()"></m-slider>    
+</div>
+<div class="section">
+    <input type="text" (mChanged)="onNameChanged($event)" [value]="name()" size="10" spellcheck="false" [mVisible]="hasName()" [placeholder]="track().id">
+</div>

@@ -1,0 +1,3 @@
+@for(s of slots(); track i; let i = $index) {
+    <m-mixer-send-slot [post]="s.postRouting" [value]="s.amount" [trackId]="s.fxTrackId" (postChanged)="onSetPost(i, $event)" (trackIdChanged)="onSetTrackId(i, $event)" (valueChanged)="onSetAmount(i, $event)"></m-mixer-send-slot>
+}

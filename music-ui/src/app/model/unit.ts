@@ -1,0 +1,1 @@
+export type Unit = 'samples' | 'seconds' | 'beats';

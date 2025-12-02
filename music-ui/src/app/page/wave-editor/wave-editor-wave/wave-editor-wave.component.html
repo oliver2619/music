@@ -1,0 +1,4 @@
+<div #frame class="canvas-frame">
+    <canvas #canvas (contextmenu)="onContextMenu($event)" (pointerdown)="onPointerDown($event)" (pointermove)="onPointerMove($event)" (pointerup)="onPointerUp($event)" (wheel)="onMouseWheel($event)"></canvas>
+</div>
+<m-scrollbar [pos]="scrollPos()" orientation="horizontal" [target]="frame" [total]="totalScrollSize()" (scroll)="onScroll($event)"></m-scrollbar>

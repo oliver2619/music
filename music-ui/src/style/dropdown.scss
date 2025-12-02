@@ -1,0 +1,21 @@
+@use './color';
+@use './spacing';
+
+.dropdown {
+    z-index: 1;
+    visibility: hidden;
+    position: absolute;
+    border: 1px solid color.$nav;
+    box-shadow: 0 0 spacing.$shadow color.$nav, inset 0 0 spacing.$shadow color.$nav;
+    padding: spacing.gap(1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: spacing.gap(1);
+    background-color: color.$background;
+    @include spacing.border(0);
+
+    &.visible {
+        visibility: visible;
+    }
+}

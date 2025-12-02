@@ -1,0 +1,24 @@
+@use '../../../style/spacing';
+
+:host {
+    flex: 1 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: spacing.gap(1);
+}
+
+.scroll {
+    position: relative;
+    flex: 1 1;
+    align-self: stretch;
+    overflow-x: auto;
+}
+
+.tracks {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    column-gap: spacing.gap(1);
+}

@@ -1,0 +1,57 @@
+@use '../../../style/color';
+@use '../../../style/spacing';
+
+:host {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.backpane {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(black, 0.5);
+}
+
+.modalpane {
+    z-index: 3;
+    box-sizing: border-box;
+    border: 2px solid color.$nav;
+    box-shadow: 0 0 spacing.$shadow color.$nav, inset 0 0 spacing.$shadow color.$nav;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    color: color.$form-text;
+    background-color: color.$form-bkgnd;
+    @include spacing.border(2);
+
+    & > h1 {
+        padding: spacing.padding(0);
+        color: black;
+        background-color: color.$nav;
+    }
+
+    & > .content {
+        flex: 1 1;
+        padding: spacing.gap(1);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        row-gap: spacing.gap(1);
+    }
+
+    .inner-content {
+        position:absolute;
+    }
+}

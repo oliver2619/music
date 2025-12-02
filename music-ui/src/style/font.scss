@@ -1,0 +1,9 @@
+@use 'sass:math';
+
+$family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica", Arial, "Noto Sans", sans-serif;
+
+@mixin default($size) {
+    font-family: $family;
+    font-weight: 400;
+    font-size: math.pow(2, $size) * 12pt;
+}

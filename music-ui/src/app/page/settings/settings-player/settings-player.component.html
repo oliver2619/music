@@ -1,0 +1,15 @@
+<form class="form-grid-2">
+    <label for="settings.player.device" ptI18n="settings.device"></label>
+    <select id="settings.player.device">
+        @for(d of devices(); track d.id) {
+            <option [value]="d.id">{{d.name}}</option>
+        }
+    </select>
+    <label for="settings.player.samplerate" ptI18n="samplerate"></label>
+    <select id="settings.player.samplerate" mSelectSamplerate></select>
+    <label for="settings.player.latency" ptI18n="settings.latency"></label>
+    <div class="input-group">
+        <input id="settings.player.latency" type="number" min="0" max="10000" step="100" class="ng-invalid">
+        <span>ms</span>
+    </div>
+</form>

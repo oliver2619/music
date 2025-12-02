@@ -1,0 +1,12 @@
+@use '../../../style/color';
+@use '../../../style/spacing';
+
+:host {
+    padding: spacing.gap(0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    row-gap: spacing.gap(0.5);
+    color: color.$group-text;
+    background-color: color.$group-bkgnd;
+}

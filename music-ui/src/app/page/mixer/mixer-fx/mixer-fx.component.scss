@@ -1,0 +1,19 @@
+@use '../../../../style/spacing';
+
+:host {
+    padding: spacing.padding(0);
+    display: grid;
+    grid-template-columns: auto min-content;
+    align-items: stretch;
+    justify-items: stretch;
+    justify-content: stretch;
+    gap: spacing.gap(0.5) spacing.padding(0);
+}
+
+button {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: start;
+    display: inline-block;
+}

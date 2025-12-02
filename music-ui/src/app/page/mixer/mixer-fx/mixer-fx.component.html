@@ -1,0 +1,4 @@
+@for(s of slots(); track i; let i = $index) {
+    <button type="button" (click)="onOpenEffect(i)" class="yellow">{{ s.effect }}</button>
+    <button type="button" (click)="onToggleOn(i)" [mActive]="s.on" [disabled]="!s.enabled" class="green">On</button>
+}

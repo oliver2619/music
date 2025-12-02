@@ -29,7 +29,7 @@ export class MixerComponent {
         || (t.type === TrackType.MIDI && filter.midiTrack)
         || (t.type === TrackType.MASTER && filter.globalTrack);
       const nameMatch = filter.searchString.length > 0 && (nameExp.test(t.name) || nameExp.test(t.id));
-      const muteMatch = filter.mutedTrack || (t as any as MutableTrackState).muted !== true;
+      const muteMatch = filter.mutedTrack || (t as MutableTrackState).muted !== true;
       return (trackTypeMatch && muteMatch) || nameMatch;
     });
   });

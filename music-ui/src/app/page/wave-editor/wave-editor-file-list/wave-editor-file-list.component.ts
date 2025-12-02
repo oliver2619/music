@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { WaveEditorService } from '../../../service/wave-editor.service';
@@ -8,18 +7,19 @@ import { waveEditorSelector } from '../../../selector/wave-editor.selector';
 import { WaveEditorNewComponent, WaveEditorNewFormValue } from "../wave-editor-new/wave-editor-new.component";
 import { ModalService } from '../../../service/modal.service';
 import { I18nService } from '@pluto-ngtools/i18n';
+import { ActiveDirective } from '../../../directive/active.directive';
 
 @Component({
   selector: 'm-wave-editor-file-list',
-  imports: [NgClass],
+  imports: [ActiveDirective],
   templateUrl: './wave-editor-file-list.component.html',
   styleUrl: './wave-editor-file-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WaveEditorFileListComponent {
 
-  readonly load = output();
-  readonly saveAs = output();
+  readonly load = output<void>();
+  readonly saveAs = output<void>();
   readonly querySave = output<QuerySaveEvent>();
 
   private readonly store = inject(Store);

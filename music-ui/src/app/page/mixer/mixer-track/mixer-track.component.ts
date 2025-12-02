@@ -26,13 +26,13 @@ export class MixerTrackComponent {
 
   readonly track = input.required<TrackState>();
 
-  readonly hasEq = computed(() => (this.track() as any as TrackWithEqState).eq != undefined);
-  readonly hasFx = computed(() => (this.track() as any as TrackWithFxState).fx != undefined);
-  readonly hasName = computed(() => (this.track() as any as NamedTrackState).name != undefined);
-  readonly hasRouting = computed(() => (this.track() as any as RoutedTrackState).groupId != undefined);
-  readonly hasSendFx = computed(() => (this.track() as any as TrackWithSendFxState).sendFx != undefined);
-  readonly hasSoloMute = computed(() => (this.track() as any as MutableTrackState).muted != undefined);
-  readonly hasVolpan = computed(() => (this.track() as any as VolpanTrackState).volume != undefined);
+  readonly hasEq = computed(() => (this.track() as unknown as TrackWithEqState).eq != undefined);
+  readonly hasFx = computed(() => (this.track() as unknown as TrackWithFxState).fx != undefined);
+  readonly hasName = computed(() => (this.track() as unknown as NamedTrackState).name != undefined);
+  readonly hasRouting = computed(() => (this.track() as unknown as RoutedTrackState).groupId != undefined);
+  readonly hasSendFx = computed(() => (this.track() as unknown as TrackWithSendFxState).sendFx != undefined);
+  readonly hasSoloMute = computed(() => (this.track() as unknown as MutableTrackState).muted != undefined);
+  readonly hasVolpan = computed(() => (this.track() as unknown as VolpanTrackState).volume != undefined);
   readonly hasUv = computed(() => this.track().type !== TrackType.MIDI);
   readonly uvPeak = signal(0);
 
@@ -42,23 +42,23 @@ export class MixerTrackComponent {
   private readonly soloActivated = this.store.selectSignal(mixSoloActiveSelector);
 
   readonly name = computed(() => {
-    const n = this.track() as any as NamedTrackState;
+    const n = this.track() as unknown as NamedTrackState;
     return n.name ?? '';
   });
   readonly pan = computed(() => {
-    const vp = this.track() as any as VolpanTrackState;
+    const vp = this.track() as unknown as VolpanTrackState;
     return vp?.pan ?? 0;
   });
   readonly volume = computed(() => {
-    const vp = this.track() as any as VolpanTrackState;
+    const vp = this.track() as unknown as VolpanTrackState;
     return vp?.volume ?? 0;
   });
   readonly routedTrack = computed(() => {
-    const r = this.track() as any as RoutedTrackState;
+    const r = this.track() as unknown as RoutedTrackState;
     return r.groupId ?? MASTER_TRACK_ID;
   });
   readonly isRouted = computed(() => {
-    const r = this.track() as any as RoutedTrackState;
+    const r = this.track() as unknown as RoutedTrackState;
     return r.groupId != undefined && r.groupId !== MASTER_TRACK_ID;
   });
   readonly availableRoutes = computed(() => {
@@ -70,11 +70,11 @@ export class MixerTrackComponent {
   });
   readonly hasAvailableRoutes = computed(() => this.availableRoutes().length > 1);
   readonly solo = computed(() => {
-    const s = (this.track() as any as MutableTrackState).solo;
+    const s = (this.track() as unknown as MutableTrackState).solo;
     return s ?? false;
   });
   readonly muted = computed(() => {
-    const m = (this.track() as any as MutableTrackState).muted;
+    const m = (this.track() as unknown as MutableTrackState).muted;
     return (m ?? false) || (this.soloActivated() && !this.solo());
   });
   readonly canDelete = computed(() => this.track().type !== TrackType.MASTER);
@@ -94,7 +94,7 @@ export class MixerTrackComponent {
   }
 
   onMute() {
-    this.mixService.setTrackMuted(this.track().id, (this.track() as any as MutableTrackState).muted === false);
+    this.mixService.setTrackMuted(this.track().id, (this.track() as unknown as MutableTrackState).muted === false);
   }
 
   onSetVolume(volume: number) {

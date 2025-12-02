@@ -1,5 +1,5 @@
 @if(isButton()) {
-    <button type="button" (click)="onClickButton()" [ngClass]="{active: booleanValue()}">{{(booleanValue() ? 'on' : 'off') | i18n}}</button>
+    <button type="button" (click)="onClickButton()" [mActive]="booleanValue()">{{(booleanValue() ? 'on' : 'off') | i18n}}</button>
 } @else if(isDropdown()) {
     <select [value]="stringValue()" (mChanged)="onChangeChoice($event)">
         @for(c of choice(); track c) {

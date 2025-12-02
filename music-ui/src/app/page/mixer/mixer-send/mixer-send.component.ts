@@ -27,7 +27,7 @@ export class MixerSendComponent {
 
   readonly track = input.required<TrackState>();
   readonly slots = computed(() => {
-    const fx = (this.track() as any as TrackWithSendFxState).sendFx;
+    const fx = (this.track() as unknown as TrackWithSendFxState).sendFx;
     if (fx == undefined) {
       return DEFAULT_SLOTS;
     } else {

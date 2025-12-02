@@ -4,7 +4,6 @@
 
 ### other
 * shortcuts for each modal layer, show shortcut in title (when electron)
-* replace [ngClass]="{active: ...}" by [mActive]
 * spin button & slider: db mode reset and min / max / default not working correctly
 * select: onfocus -> open dropdown, mousewheel -> change selection
 

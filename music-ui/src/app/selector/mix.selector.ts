@@ -52,5 +52,5 @@ export const mixMidiTracksCanInsertSelector = createSelector(
 
 export const mixSoloActiveSelector = createSelector(
     mixSelector,
-    mix => mix.tracks.some(it => (it as any as MutableTrackState)?.solo === true)
+    mix => mix.tracks.some(it => (it as unknown as MutableTrackState)?.solo === true)
 )

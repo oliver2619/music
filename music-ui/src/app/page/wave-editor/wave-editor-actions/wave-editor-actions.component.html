@@ -34,7 +34,7 @@
         <button type="button" (click)="onConvert()">Convert</button>
     </div>
     <div class="button-row">
-        <button type="button" (click)="onPitch()" [ngClass]="{active: pitchVisible()}">Pitch</button>
-        <button type="button" (click)="onFx()" [ngClass]="{active: fxVisible()}">Fx</button>
+        <button type="button" (click)="onPitch()" [mActive]="pitchVisible()">Pitch</button>
+        <button type="button" (click)="onFx()" [mActive]="fxVisible()">Fx</button>
     </div>
 </div>

@@ -23,7 +23,7 @@ export class MixerEqComponent {
 
   readonly track = input.required<TrackState>();
   readonly values = computed(() => {
-    const eq = (this.track() as any as TrackWithEqState).eq;
+    const eq = (this.track() as unknown as TrackWithEqState).eq;
     if (eq == undefined) {
       return DEFAULT_VALUES;
     } else {

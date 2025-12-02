@@ -1,7 +1,7 @@
 <div class="button-row">
-    <button type="button" [ngClass]="{active: mode() == 'select'}" (click)="onEditModeSelect()">Sel</button>
-    <button type="button" [ngClass]="{active: mode() == 'scroll'}" (click)="onEditModeScroll()">Scl</button>
-    <button type="button" [ngClass]="{active: mode() == 'zoom'}" (click)="onEditModeZoom()">Zin</button>
+    <button type="button" [mActive]="mode() === 'select'" (click)="onEditModeSelect()">Sel</button>
+    <button type="button" [mActive]="mode() === 'scroll'" (click)="onEditModeScroll()">Scl</button>
+    <button type="button" [mActive]="mode() === 'zoom'" (click)="onEditModeZoom()">Zin</button>
 </div>
 <div class="button-row">
     <label for="waveEditorSelection.start">Sta</label>
@@ -16,9 +16,9 @@
     <input id="waveEditorSelection.length" type="number" [value]="selectionLength()" [defaultValue]="selectionLength()" (mNumberChanged)="onSelectionLengthChange($event)" min="0" max="10000000">
 </div>
 <div class="button-row">
-    <button type="button" (click)="onClearSelection()" [ngClass]="{active: !hasSelection()}">Clr</button>
-    <button type="button" (click)="onSelectEnd()" [ngClass]="{active: isEndSelected()}">End</button>
-    <button type="button" (click)="onSelectAll()" [ngClass]="{active: isAllSelected()}">All</button>
+    <button type="button" (click)="onClearSelection()" [mActive]="!hasSelection()">Clr</button>
+    <button type="button" (click)="onSelectEnd()" [mActive]="isEndSelected()">End</button>
+    <button type="button" (click)="onSelectAll()" [mActive]="isAllSelected()">All</button>
 </div>
 <div class="button-row">
     <span>Z</span>
@@ -27,7 +27,7 @@
         <button type="button" (click)="onZoomIn()">-</button>
         <button type="button" [disabled]="!canZoomIn()" (click)="onZoomOut()">+</button>
     </div>
-    <button type="button" (click)="onZoomReset()" [ngClass]="{active: zoom() == 1}">1:1</button>
+    <button type="button" (click)="onZoomReset()" [mActive]="zoom() === 1">1:1</button>
     <button type="button" (click)="onZoomShowSelection()">Sel</button>
     <button type="button" (click)="onZoomShowAll()">All</button>
 </div>

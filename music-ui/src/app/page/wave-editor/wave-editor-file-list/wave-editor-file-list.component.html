@@ -1,6 +1,6 @@
 <div class="button-row">
     @for(file of files(); track file.name) {
-        <button type="button" (click)="onSelect(file)" [ngClass]="{active: selected() === file}">
+        <button type="button" (click)="onSelect(file)" [mActive]="selected() === file">
             <span>{{file.name}}</span>
             @if(file.isModified) {
                 <small><sup>*</sup></small>

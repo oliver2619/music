@@ -7,11 +7,11 @@ import { ModalService } from '../../../service/modal.service';
 import { WaveEditorConvertComponent, WaveEditorConvertFormValue } from '../wave-editor-convert/wave-editor-convert.component';
 import { I18nService } from '@pluto-ngtools/i18n';
 import { waveEditorActions } from '../../../action/wave-editor.action';
-import { NgClass } from '@angular/common';
+import { ActiveDirective } from "../../../directive/active.directive";
 
 @Component({
   selector: 'm-wave-editor-actions',
-  imports: [NgClass],
+  imports: [ActiveDirective],
   templateUrl: './wave-editor-actions.component.html',
   styleUrl: './wave-editor-actions.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

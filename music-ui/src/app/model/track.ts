@@ -137,7 +137,7 @@ export class Track<S extends TrackState> {
     }
 
     removeReferenceToFxTrack(fxTrackId: string): Track<S> {
-        const sendFx = (this.state as any as TrackWithSendFxState).sendFx;
+        const sendFx = (this.state as unknown as TrackWithSendFxState).sendFx;
         if (sendFx == undefined) {
             return this;
         } else {
@@ -149,7 +149,7 @@ export class Track<S extends TrackState> {
     }
 
     removeReferenceToGroupTrack(groupTrackId: string): Track<S> {
-        const groupId = (this.state as any as RoutedTrackState).groupId;
+        const groupId = (this.state as unknown as RoutedTrackState).groupId;
         if (groupId === groupTrackId) {
             return new Track({
                 ...this.state,
@@ -161,7 +161,7 @@ export class Track<S extends TrackState> {
     }
 
     route(targetTrackId: string): Track<S> {
-        const groupId = (this.state as any as RoutedTrackState).groupId;
+        const groupId = (this.state as unknown as RoutedTrackState).groupId;
         if (groupId === undefined) {
             return this;
         } else {
@@ -171,7 +171,7 @@ export class Track<S extends TrackState> {
     }
 
     setEq(slot: number, value: number): Track<S> {
-        const eq = (this.state as any as TrackWithEqState).eq;
+        const eq = (this.state as unknown as TrackWithEqState).eq;
         if (eq === undefined) {
             return this;
         } else {
@@ -183,7 +183,7 @@ export class Track<S extends TrackState> {
     }
 
     setFx(slot: number, data: { effect?: string | undefined, on?: boolean | undefined, parameters?: Readonly<Record<string, EffectValue>> | undefined }): Track<S> {
-        const fx = (this.state as any as TrackWithFxState).fx;
+        const fx = (this.state as unknown as TrackWithFxState).fx;
         if (fx == undefined) {
             return this;
         } else {
@@ -195,7 +195,7 @@ export class Track<S extends TrackState> {
     }
 
     setMuted(muted: boolean): Track<S> {
-        const sm = (this.state as any as MutableTrackState);
+        const sm = (this.state as unknown as MutableTrackState);
         if (sm.muted == undefined || sm.solo == undefined) {
             return this;
         } else {
@@ -208,7 +208,7 @@ export class Track<S extends TrackState> {
     }
 
     setName(name: string): Track<S> {
-        const n = (this.state as any as NamedTrackState).name;
+        const n = (this.state as unknown as NamedTrackState).name;
         if (n == undefined) {
             return this;
         } else {
@@ -217,7 +217,7 @@ export class Track<S extends TrackState> {
     }
 
     setSendFx(slot: number, data: { amount?: number | undefined, fxTrackId?: string | undefined, post?: boolean | undefined }): Track<S> {
-        const sendFx = (this.state as any as TrackWithSendFxState).sendFx;
+        const sendFx = (this.state as unknown as TrackWithSendFxState).sendFx;
         if (sendFx == undefined) {
             return this;
         } else {
@@ -229,7 +229,7 @@ export class Track<S extends TrackState> {
     }
 
     setSolo(solo: boolean): Track<S> {
-        const sm = (this.state as any as MutableTrackState);
+        const sm = (this.state as unknown as MutableTrackState);
         if (sm.muted == undefined || sm.solo == undefined) {
             return this;
         } else {
@@ -242,7 +242,7 @@ export class Track<S extends TrackState> {
     }
 
     setVolpan(volume: number | undefined, pan: number | undefined): Track<S> {
-        const vp = (this.state as any as VolpanTrackState);
+        const vp = (this.state as unknown as VolpanTrackState);
         if (vp.volume == undefined || vp.pan == undefined) {
             return this;
         } else {

@@ -6,7 +6,7 @@ class MusicErrorHandler implements ErrorHandler {
 
     private readonly store = inject(Store);
 
-    handleError(error: any) {
+    handleError(error: unknown) {
         console.error(error);
         if (error instanceof Error) {
             this.dispatchError(error.message);

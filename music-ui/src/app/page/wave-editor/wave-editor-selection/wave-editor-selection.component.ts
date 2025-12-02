@@ -6,15 +6,16 @@ import { settingsUnitSelector } from '../../../selector/settings.selector';
 import { convertNumSamplesUsingUnit, convertUnitToNumSamples } from '../../../utils';
 import { mixBpmSelector } from '../../../selector/mix.selector';
 import { ChangedDirective } from "../../../directive/changed.directive";
-import { DecimalPipe, NgClass } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import { waveEditorActions } from '../../../action/wave-editor.action';
 import { NumberChangedDirective } from "../../../directive/number-changed.directive";
+import { ActiveDirective } from "../../../directive/active.directive";
 
 const maxZoom = 16;
 
 @Component({
   selector: 'm-wave-editor-selection',
-  imports: [SelectSnapDirective, ChangedDirective, NgClass, NumberChangedDirective, DecimalPipe],
+  imports: [SelectSnapDirective, ChangedDirective, NumberChangedDirective, DecimalPipe, ActiveDirective],
   templateUrl: './wave-editor-selection.component.html',
   styleUrl: './wave-editor-selection.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -83,8 +84,6 @@ export class WaveEditorSelectionComponent {
 
   readonly zoom = this.store.selectSignal(waveEditorZoomSelector);
   readonly canZoomIn = computed(() => this.zoom() < maxZoom);
-
-  constructor() { }
 
   onClearSelection() {
     this.store.dispatch(waveEditorActions.selectRange({ start: 0, end: 0 }));

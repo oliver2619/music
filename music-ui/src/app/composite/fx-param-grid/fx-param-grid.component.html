@@ -1,6 +1,6 @@
 @for(p of primaryParameters(); track p.name) {
     <div class="p1">
-        <label>{{p.name}}</label>
+        <div>{{p.name}}</div>
         <m-fx-param-input [value]="values()[p.name]" [parameter]="p.param" (changeValue)="onChangeValue(p.name, $event)"></m-fx-param-input>
     </div>
 }

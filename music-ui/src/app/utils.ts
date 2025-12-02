@@ -1,7 +1,6 @@
 import { FormGroup } from "@angular/forms";
 import { concat, map, Observable, of } from "rxjs";
 import { Unit } from "./model/unit";
-import { DecimalPipe } from "@angular/common";
 
 export function formGroupValidChange(formGroup: FormGroup): Observable<boolean> {
     return concat(of(formGroup.valid), formGroup.valueChanges.pipe(map(() => formGroup.valid)));

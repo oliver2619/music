@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, effect, ElementRef, HostListener, inject, input, numberAttribute, OnDestroy, output, signal, untracked, viewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, effect, ElementRef, HostListener, inject, input, numberAttribute, OnDestroy, output, signal, viewChild } from '@angular/core';
 
 type ScrollbarOrientation = 'vertical' | 'horizontal';
 

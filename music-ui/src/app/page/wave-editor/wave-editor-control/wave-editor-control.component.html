@@ -1,23 +1,23 @@
 <div class="tool-bar">
     <div class="button-row">
-        <label>Samplerate</label>
+        <div>Samplerate</div>
         <input type="text" value="{{ samplerate() | number:'0.0-0'}}" readonly="readonly" size="5" class="number">
     </div>
     <div class="button-row">
-        <label>Length</label>
+        <div>Length</div>
         <input type="text" value="{{ length() | position}}" readonly="readonly" size="7" class="number">
         <select mSelectUnit></select>    
     </div>
     <div class="button-row">
-        <button (click)="onToggleLoop()" [disabled]="isRecording()" [ngClass]="{active: isLooping() && !isRecording()}" type="button">Loop</button>
-        <button (click)="onPlay()" [disabled]="isRecording()" [ngClass]="{active: isPlaying()}" type="button">Play</button>
+        <button (click)="onToggleLoop()" [disabled]="isRecording()" [mActive]="isLooping() && !isRecording()" type="button">Loop</button>
+        <button (click)="onPlay()" [disabled]="isRecording()" [mActive]="isPlaying()" type="button">Play</button>
         <button (click)="onStop()" [disabled]="!isPlaying() && !isRecording()" type="button">Stop</button>
         @if(canRecord()) {
-            <button (click)="onRecord()" [disabled]="isPlaying()" [ngClass]="{active: isRecording()}" type="button">Rec.</button>
+            <button (click)="onRecord()" [disabled]="isPlaying()" [mActive]="isRecording()" type="button">Rec.</button>
         }
     </div>
     <div class="button-row stretch">
-        <label>Volume</label>
+        <div>Volume</div>
         <m-slider min="0" max="1" db="true" [value]="volume()" [neutral]="1" (changing)="onChangeVolume($event)" orientation="horizontal"></m-slider>
         <input type="text" value="{{ volume() | db}}" readonly="readonly" size="4" class="number">
         <span>dB</span>

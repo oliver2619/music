@@ -1,6 +1,6 @@
 <div class="section stretch">
     <span>FX</span>
-    <button type="button" (click)="onToggle()" [ngClass]="{active: enabled()}">On</button>
+    <button type="button" (click)="onToggle()" [mActive]="enabled()">On</button>
 </div>
 <div class="content">
     <select [value]="name()" (mChanged)="onChange($event)">

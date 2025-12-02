@@ -33,7 +33,7 @@ export class MixerFxComponent {
 
   readonly track = input.required<TrackState>();
   readonly slots = computed(() => {
-    const fx = (this.track() as any as TrackWithFxState).fx;
+    const fx = (this.track() as unknown as TrackWithFxState).fx;
     if (fx == undefined) {
       return DEFAULT_SLOTS;
     } else {

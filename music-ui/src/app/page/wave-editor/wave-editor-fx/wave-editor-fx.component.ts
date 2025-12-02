@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { ChangedDirective } from "../../../directive/changed.directive";
-import { NgClass } from '@angular/common';
 import { WaveEditorService } from '../../../service/wave-editor.service';
 import { Store } from '@ngrx/store';
 import { waveEditorCurrentFxSelector } from '../../../selector/wave-editor.selector';
 import { effectNamesSelector } from '../../../selector/effects.selector';
 import { SelectDirective } from '../../../directive/select.directive';
 import { FxParamGridComponent } from "../../../composite/fx-param-grid/fx-param-grid.component";
+import { ActiveDirective } from "../../../directive/active.directive";
 
 @Component({
   selector: 'm-wave-editor-fx',
-  imports: [ChangedDirective, NgClass, SelectDirective, FxParamGridComponent],
+  imports: [ChangedDirective, SelectDirective, FxParamGridComponent, ActiveDirective],
   templateUrl: './wave-editor-fx.component.html',
   styleUrl: './wave-editor-fx.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

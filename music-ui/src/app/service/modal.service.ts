@@ -10,7 +10,7 @@ export enum DialogButtons {
 }
 
 export enum ModalResult {
-  OK = 0, YES = 0, NO = 1, CANCEL = 2
+  YES = 0, NO = 1, CANCEL = 2
 }
 
 export interface ModalComponentBase<T> {

@@ -47,6 +47,9 @@ export class EffectsService {
           max: 1,
           neutral: 1,
           db: true,
+        },
+        'On': {
+          type: 'boolean',
         }
       },
       'Volpan': {

@@ -1,4 +1,4 @@
-import { DecimalPipe, NgClass } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { waveEditorControlSelector, waveEditorCurrentSelector } from '../../../selector/wave-editor.selector';
@@ -12,10 +12,11 @@ import { DbPipe } from '../../../pipe/db.pipe';
 import { PositionPipe } from "../../../pipe/position.pipe";
 import { SelectUnitDirective } from '../../../directive/select-unit.directive';
 import { AudioService } from '../../../service/audio.service';
+import { ActiveDirective } from "../../../directive/active.directive";
 
 @Component({
   selector: 'm-wave-editor-control',
-  imports: [NgClass, SliderComponent, DecimalPipe, DbPipe, PositionPipe, SelectUnitDirective],
+  imports: [SliderComponent, DecimalPipe, DbPipe, PositionPipe, SelectUnitDirective, ActiveDirective],
   templateUrl: './wave-editor-control.component.html',
   styleUrl: './wave-editor-control.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

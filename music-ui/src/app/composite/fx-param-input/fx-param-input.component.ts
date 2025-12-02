@@ -1,15 +1,16 @@
-import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { SpinButtonComponent } from "../../element/spin-button/spin-button.component";
 import { EffectFloatParamJson, EffectParamJson, EffectStringParamJson } from '../../service/effects.service';
 import { I18nPipe } from '@pluto-ngtools/i18n';
-import { DecimalPipe, NgClass } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import { ChangedDirective } from "../../directive/changed.directive";
 import { SelectDirective } from '../../directive/select.directive';
 import { DbPipe } from '../../pipe/db.pipe';
+import { ActiveDirective } from "../../directive/active.directive";
 
 @Component({
   selector: 'm-fx-param-input',
-  imports: [SpinButtonComponent, I18nPipe, NgClass, ChangedDirective, SelectDirective, DecimalPipe, DbPipe],
+  imports: [SpinButtonComponent, I18nPipe, ChangedDirective, SelectDirective, DecimalPipe, DbPipe, ActiveDirective],
   templateUrl: './fx-param-input.component.html',
   styleUrl: './fx-param-input.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

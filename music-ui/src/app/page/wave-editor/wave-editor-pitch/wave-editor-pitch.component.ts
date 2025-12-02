@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { WaveEditorService } from '../../../service/wave-editor.service';
 import { Store } from '@ngrx/store';
@@ -6,10 +5,11 @@ import { waveEditorCurrentPitchSelector } from '../../../selector/wave-editor.se
 import { waveEditorActions } from '../../../action/wave-editor.action';
 import { NumberChangedDirective } from "../../../directive/number-changed.directive";
 import { SliderGridComponent } from "../../../element/slider-grid/slider-grid.component";
+import { ActiveDirective } from "../../../directive/active.directive";
 
 @Component({
   selector: 'm-wave-editor-pitch',
-  imports: [NgClass, NumberChangedDirective, SliderGridComponent],
+  imports: [NumberChangedDirective, SliderGridComponent, ActiveDirective],
   templateUrl: './wave-editor-pitch.component.html',
   styleUrl: './wave-editor-pitch.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

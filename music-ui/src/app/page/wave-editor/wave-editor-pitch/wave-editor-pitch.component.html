@@ -1,17 +1,17 @@
 <div class="section stretch">
     <span>Pitch</span>
-    <button type="button" (click)="onToggleSnap()" [ngClass]="{active: snapEnabled()}">Snap</button>
+    <button type="button" (click)="onToggleSnap()" [mActive]="snapEnabled()">Snap</button>
 </div>
 <div class="content">
     <m-slider-grid [x]="speed()" [y]="pitch()" [snap]="snapEnabled()" (changing)="onChangeXY($event)"></m-slider-grid>
     <form class="form-grid-2">
         <label for="waveEditorPitch.pitch">Pitch</label>
         <input id="waveEditorPitch.pitch" type="number" [value]="pitch12Rounded()" (mNumberChanged)="onPitchChanged($event)" min="-12" max="12" step="1">
-        <label>Speed</label>
+        <div>Speed</div>
         <div class="button-grid-3">
-            <button type="button" (click)="onSpeedChanged(-1)" [ngClass]="{active: speed() == -1}">&#x00BD;</button>
-            <button type="button" (click)="onSpeedChanged(0)" [ngClass]="{active: speed() == 0}">1</button>
-            <button type="button" (click)="onSpeedChanged(1)" [ngClass]="{active: speed() == 1}">2</button>
+            <button type="button" (click)="onSpeedChanged(-1)" [mActive]="speed() === -1">&#x00BD;</button>
+            <button type="button" (click)="onSpeedChanged(0)" [mActive]="speed() === 0">1</button>
+            <button type="button" (click)="onSpeedChanged(1)" [mActive]="speed() === 1">2</button>
         </div>
     </form>
     <div class="button-grid-3">

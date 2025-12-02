@@ -96,7 +96,7 @@ export interface MixState {
     readonly samplerate: number;
     readonly masterTrack: MasterTrackState;
     readonly tempoTrack: TempoTrackState;
-    readonly tracks: ReadonlyArray<AudioTrackState | FxTrackState | GroupTrackState | MidiTrackState>;
+    readonly tracks: readonly (AudioTrackState | FxTrackState | GroupTrackState | MidiTrackState)[];
     readonly visibilityFilter: MixVisibilityFilterState;
     readonly modified: boolean;
     readonly saved: boolean;

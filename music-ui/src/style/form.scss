@@ -111,21 +111,21 @@
 
     &:read-write {
         &:focus {        
-            &.ng-invalid {
+            &.invalid {
                 @include _inputColors(color.$inputInvalidText, color.$inputBackground, true);
             }
 
-            &:not(.ng-invalid) {
+            &:not(.invalid) {
                 @include _inputColors(color.$inputText, color.$inputBackground, true);
             }
         }
 
         &:not(:focus) {
-            &.ng-invalid {
+            &.invalid {
                 @include _inputColors(color.$inputInvalidText, color.$inputBackground, false);
             }
 
-            &:not(.ng-invalid) {
+            &:not(.invalid) {
                 @include _inputColors(color.$inputText, color.$inputBackground, false);
             }
         }

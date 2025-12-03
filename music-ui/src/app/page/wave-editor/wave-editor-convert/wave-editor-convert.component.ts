@@ -1,46 +1,42 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { I18nDirective } from '@pluto-ngtools/i18n';
 import { ModalComponentBase } from '../../../service/modal.service';
 import { SelectSamplerateDirective } from '../../../directive/select-samplerate.directive';
 import { ToggleButtonDirective } from '../../../directive/toggle-button.directive';
 import { Store } from '@ngrx/store';
 import { mixSamplerateSelector } from '../../../selector/mix.selector';
-import { formGroupValidChange } from '../../../utils';
+import { form, required, Field } from '@angular/forms/signals';
 
-export interface WaveEditorConvertFormValue {
+export interface WaveEditorConvertFormModel {
   samplerate: string;
   stereo: boolean;
 }
 
 @Component({
   selector: 'm-wave-editor-convert',
-  imports: [ReactiveFormsModule, I18nDirective, SelectSamplerateDirective, ToggleButtonDirective],
+  imports: [I18nDirective, SelectSamplerateDirective, ToggleButtonDirective, Field],
   templateUrl: './wave-editor-convert.component.html',
   styleUrl: './wave-editor-convert.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WaveEditorConvertComponent implements ModalComponentBase<WaveEditorConvertFormValue> {
+export class WaveEditorConvertComponent implements ModalComponentBase<WaveEditorConvertFormModel> {
 
   private readonly store = inject(Store);
   private readonly globalSamplerate = this.store.selectSignal(mixSamplerateSelector);
 
-  readonly formGroup = (() => {
-    const fb = new FormBuilder().nonNullable;
-    return fb.group({
-      samplerate: fb.control(String(this.globalSamplerate()), [Validators.required]),
-      stereo: fb.control(true),
-    })
-  })();
+  private readonly formModel = signal<WaveEditorConvertFormModel>({
+    samplerate: String(this.globalSamplerate()),
+    stereo: true,
+  });
 
-  readonly validChange = formGroupValidChange(this.formGroup);
+  readonly form = form(this.formModel, value => {
+    required(value.samplerate);
+  });
 
-  get stereoControl(): FormControl<boolean> {
-    return this.formGroup.controls['stereo'];
-  }
+  readonly valid = this.form().valid;
 
-  getValue(): WaveEditorConvertFormValue {
-    return this.formGroup.value as Required<WaveEditorConvertFormValue>;
+  getValue(): WaveEditorConvertFormModel {
+    return this.formModel();
   }
 
 }

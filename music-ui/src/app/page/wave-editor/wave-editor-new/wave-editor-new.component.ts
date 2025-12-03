@@ -1,16 +1,17 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { ModalComponentBase } from '../../../service/modal.service';
-import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToggleButtonDirective } from '../../../directive/toggle-button.directive';
-import { convertUnitToNumSamples, formGroupValidChange } from '../../../utils';
+import { convertUnitToNumSamples } from '../../../utils';
 import { SelectUnitDirective } from "../../../directive/select-unit.directive";
 import { SelectSamplerateDirective } from "../../../directive/select-samplerate.directive";
 import { Store } from '@ngrx/store';
 import { mixBpmSelector, mixSamplerateSelector } from '../../../selector/mix.selector';
 import { settingsUnitSelector } from '../../../selector/settings.selector';
 import { I18nDirective } from '@pluto-ngtools/i18n';
+import { form, Field, required, min, max } from '@angular/forms/signals';
+import { ValidDirective } from "../../../directive/valid.directive";
 
-export interface WaveEditorNewFormValue {
+export interface WaveEditorNewFormModel {
   name: string;
   samplerate: string;
   stereo: boolean;
@@ -19,12 +20,12 @@ export interface WaveEditorNewFormValue {
 
 @Component({
   selector: 'm-wave-editor-new',
-  imports: [I18nDirective, ReactiveFormsModule, ToggleButtonDirective, SelectUnitDirective, SelectSamplerateDirective],
+  imports: [I18nDirective, ToggleButtonDirective, SelectUnitDirective, SelectSamplerateDirective, Field, ValidDirective],
   templateUrl: './wave-editor-new.component.html',
   styleUrl: './wave-editor-new.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class WaveEditorNewComponent implements ModalComponentBase<WaveEditorNewFormValue> {
+export class WaveEditorNewComponent implements ModalComponentBase<WaveEditorNewFormModel> {
 
   private static sequence = 0;
 
@@ -33,24 +34,25 @@ export class WaveEditorNewComponent implements ModalComponentBase<WaveEditorNewF
   private readonly globalBpm = this.store.selectSignal(mixBpmSelector);
   private readonly unit = this.store.selectSignal(settingsUnitSelector);
 
-  readonly formGroup = (() => {
-    const fb = new FormBuilder().nonNullable;
-    return fb.group({
-      name: fb.control(`newSample${++WaveEditorNewComponent.sequence}`, [Validators.required]),
-      samplerate: fb.control(String(this.globalSamplerate()), [Validators.required]),
-      stereo: fb.control(true),
-      length: fb.control(0, [Validators.required, Validators.min(0), Validators.max(100000)]),
-    })
-  })();
-
-  readonly validChange = formGroupValidChange(this.formGroup);
-
-  get stereoControl(): FormControl<boolean> {
-    return this.formGroup.controls['stereo'];
+  private readonly formModel = signal<WaveEditorNewFormModel>({
+    length: 0,
+    name: `newSample${++WaveEditorNewComponent.sequence}`,
+    samplerate: String(this.globalSamplerate()),
+    stereo: true
   }
+  );
 
-  getValue(): WaveEditorNewFormValue {
-    const ret: WaveEditorNewFormValue = this.formGroup.value as Required<WaveEditorNewFormValue>;
+  readonly form = form(this.formModel, value => {
+    required(value.length);
+    required(value.name);
+    min(value.length, 0);
+    max(value.length, 100000);
+  });
+
+  readonly valid = this.form().valid;
+
+  getValue(): WaveEditorNewFormModel {
+    const ret = this.formModel();
     return {
       ...ret,
       length: convertUnitToNumSamples(ret.length, { bpm: this.globalBpm(), samplerate: Number.parseInt(ret.samplerate), unit: this.unit() }),

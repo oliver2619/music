@@ -1,6 +1,6 @@
-<form [formGroup]="formGroup" class="form-grid-2">
+<form class="form-grid-2">
     <label for="waveEditorConvert.samplerate" ptI18n="samplerate"></label>
-    <select id="waveEditorConvert.samplerate" formControlName="samplerate" mSelectSamplerate></select>
+    <select id="waveEditorConvert.samplerate" [field]="form.samplerate" mSelectSamplerate></select>
     <label for="waveEditorConvert.channels" ptI18n="channels"></label>
-    <button id="waveEditorConvert.channels" type="button" mToggleButton [control]="stereoControl" ptI18n="stereo"></button>
+    <button id="waveEditorConvert.channels" type="button" mToggleButton [model]="form.stereo().value" ptI18n="stereo"></button>
 </form>

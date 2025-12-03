@@ -4,7 +4,7 @@ import { WaveEditorService } from '../../../service/wave-editor.service';
 import { WaveEditorFileState } from '../../../state/wave-editor.state';
 import { QuerySaveEvent } from '../../../event/query-save.event';
 import { waveEditorSelector } from '../../../selector/wave-editor.selector';
-import { WaveEditorNewComponent, WaveEditorNewFormValue } from "../wave-editor-new/wave-editor-new.component";
+import { WaveEditorNewComponent, WaveEditorNewFormModel } from "../wave-editor-new/wave-editor-new.component";
 import { ModalService } from '../../../service/modal.service';
 import { I18nService } from '@pluto-ngtools/i18n';
 import { ActiveDirective } from '../../../directive/active.directive';
@@ -55,7 +55,7 @@ export class WaveEditorFileListComponent {
   }
 
   onNew() {
-    this.modalService.showDialog<WaveEditorNewFormValue, WaveEditorNewComponent>(WaveEditorNewComponent, this.i18nService.get('waveEditorNew')).then(result => {
+    this.modalService.showDialog<WaveEditorNewFormModel, WaveEditorNewComponent>(WaveEditorNewComponent, this.i18nService.get('waveEditorNew')).then(result => {
       if (result != undefined) {
         this.waveEditorService.new({ name: result.name, length: result.length, samplerate: Number.parseInt(result.samplerate), stereo: result.stereo });
       }

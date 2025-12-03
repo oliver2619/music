@@ -1,10 +1,4 @@
-import { FormGroup } from "@angular/forms";
-import { concat, map, Observable, of } from "rxjs";
 import { Unit } from "./model/unit";
-
-export function formGroupValidChange(formGroup: FormGroup): Observable<boolean> {
-    return concat(of(formGroup.valid), formGroup.valueChanges.pipe(map(() => formGroup.valid)));
-}
 
 export function convertNumSamplesUsingUnit(numSamples: number, opt: { unit: Unit, samplerate: number, bpm: number }): number {
     switch (opt.unit) {

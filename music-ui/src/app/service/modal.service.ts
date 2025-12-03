@@ -1,5 +1,4 @@
-import { Injectable, Type, ViewContainerRef } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable, Signal, Type, ViewContainerRef } from '@angular/core';
 import { ModalComponent } from '../composite/modal/modal.component';
 
 export enum DialogButtons {
@@ -14,7 +13,7 @@ export enum ModalResult {
 }
 
 export interface ModalComponentBase<T> {
-  readonly validChange: Observable<boolean>;
+  readonly valid: Signal<boolean>;
   getValue(): T;
 }
 

@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, ComponentRef, input, output, signal, Type, viewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ComponentRef, computed, effect, inject, Injector, input, output, signal, Type, viewChild, ViewContainerRef } from '@angular/core';
 import { I18nDirective } from "@pluto-ngtools/i18n";
 import { ModalComponentBase } from '../../service/modal.service';
 
@@ -16,14 +16,16 @@ export class ModalComponent implements AfterViewInit {
   readonly close = output<any | undefined>();
 
   readonly content = viewChild.required('content', { read: ViewContainerRef });
+  readonly valid = signal(false);
 
-  readonly valid = signal(true);
-
+  private readonly injector = inject(Injector);
   private instance: ComponentRef<ModalComponentBase<any>> | undefined;
 
   ngAfterViewInit() {
     this.instance = this.content().createComponent(this.component());
-    this.instance.instance.validChange.subscribe(valid => this.valid.set(valid));
+    effect(() => {
+      this.valid.set(this.instance!.instance.valid())
+    }, {injector: this.injector});
   }
 
   onCancel() {

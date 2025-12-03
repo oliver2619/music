@@ -4,7 +4,7 @@ import { waveEditorCurrentSelector, waveEditorEditSelector } from '../../../sele
 import { WaveEditorService } from '../../../service/wave-editor.service';
 import { settingsUnitSelector } from '../../../selector/settings.selector';
 import { ModalService } from '../../../service/modal.service';
-import { WaveEditorConvertComponent, WaveEditorConvertFormValue } from '../wave-editor-convert/wave-editor-convert.component';
+import { WaveEditorConvertComponent, WaveEditorConvertFormModel } from '../wave-editor-convert/wave-editor-convert.component';
 import { I18nService } from '@pluto-ngtools/i18n';
 import { waveEditorActions } from '../../../action/wave-editor.action';
 import { ActiveDirective } from "../../../directive/active.directive";
@@ -41,7 +41,7 @@ export class WaveEditorActionsComponent {
   }
 
   onConvert() {
-    this.modalService.showDialog<WaveEditorConvertFormValue, WaveEditorConvertComponent>(WaveEditorConvertComponent, this.i18nService.get('waveEditorConvert')).then(result => {
+    this.modalService.showDialog<WaveEditorConvertFormModel, WaveEditorConvertComponent>(WaveEditorConvertComponent, this.i18nService.get('waveEditorConvert')).then(result => {
       if (result != undefined) {
         this.waveEditorService.convert({ samplerate: Number.parseInt(result.samplerate), stereo: result.stereo });
       }

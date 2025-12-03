@@ -1,13 +1,13 @@
-<form [formGroup]="formGroup" class="form-grid-2">
+<form class="form-grid-2">
     <label for="waveEditorNew.name" ptI18n="waveEditorNew.name"></label>
-    <input id="waveEditorNew.name" type="text" formControlName="name" spellcheck="false" size="24">
+    <input id="waveEditorNew.name" type="text" [field]="form.name" [mValid]="form.name().valid()" spellcheck="false" size="24">
     <label for="waveEditorNew.samplerate" ptI18n="samplerate"></label>
-    <select id="waveEditorNew.samplerate" formControlName="samplerate" mSelectSamplerate></select>
+    <select id="waveEditorNew.samplerate" [field]="form.samplerate" mSelectSamplerate></select>
     <label for="waveEditorNew.channels" ptI18n="channels"></label>
-    <button id="waveEditorNew.channels" type="button" mToggleButton [control]="stereoControl" ptI18n="stereo"></button>
+    <button id="waveEditorNew.channels" type="button" mToggleButton [model]="this.form.stereo().value" ptI18n="stereo"></button>
     <label for="waveEditorNew.length" ptI18n="waveEditorNew.length"></label>
     <div class="input-group">
-        <input id="waveEditorNew.length" type="number" formControlName="length" min="0" max="100000" step="1">
+        <input id="waveEditorNew.length" type="number" [field]="form.length" [mValid]="form.length().valid()" step="1">
         <select mSelectUnit></select>
     </div>
 </form>
